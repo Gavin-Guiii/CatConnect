@@ -23,4 +23,6 @@
     <string name="service_enabled">已启用</string>
     <string name="server_service_name">向已配对的设备共享通知</string>
     <string name="server_service_desc">向已配对的兼容设备共享本设备的通知</string>
+    <string name="clear_on_origin_device_name">在来源设备上清除通知</string>
+    <string name="clear_on_origin_device_desc">在此设备上清除通知时，也会在来源设备上清除该通知</string>
 </resources>

@@ -18,6 +18,18 @@ class AppSettings(context: Context) {
             _deviceAddressLive.postValue(value)
         }
 
+    var clearOnOriginDevice: Boolean
+        get() = prefs.getBoolean("clearOnOriginDevice", true)
+        set(value){
+            prefs.edit().apply {
+                putBoolean("clearOnOriginDevice", value)
+                apply()
+            }
+            _clearOnOriginDeviceLive.postValue(value)
+        }
+
     private val _deviceAddressLive = MutableLiveData<String?>(deviceAddress)
+    private val _clearOnOriginDeviceLive = MutableLiveData<Boolean>(clearOnOriginDevice)
     val deviceAddressLive: LiveData<String?> = _deviceAddressLive
+    val clearOnOriginDeviceLive: LiveData<Boolean> = _clearOnOriginDeviceLive
 }

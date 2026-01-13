@@ -31,6 +31,7 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Share
@@ -193,6 +194,10 @@ fun MainActivityContent(mainViewModel: MainViewModel = viewModel()) {
                             )
                         }
                     }
+                }
+
+                item {
+                    ClearOnOriginDeviceCard()
                 }
 
                 item {
@@ -511,6 +516,37 @@ fun ServerServiceCard() {
                 } else {
                     stringResource(R.string.service_disabled)
                 }, modifier = Modifier.padding(start = 8.dp)
+            )
+        }
+    }
+}
+
+@Composable
+fun ClearOnOriginDeviceCard() {
+    val appSettings = MyApplication.Companion.getInstance().getSettings()
+    val currentClearOnOriginDevice by appSettings.clearOnOriginDeviceLive.observeAsState()
+
+    DefaultCard {
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            MyIcon(Icons.Filled.CheckCircle)
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = stringResource(R.string.clear_on_origin_device_name),
+                    style = MaterialTheme.typography.titleMedium,
+                )
+                Text(
+                    text = stringResource(R.string.clear_on_origin_device_desc),
+                )
+            }
+            Switch(
+                modifier = Modifier.padding(start = 8.dp),
+                checked = currentClearOnOriginDevice == true,
+                onCheckedChange = {
+                    appSettings.clearOnOriginDevice = it
+                }
             )
         }
     }

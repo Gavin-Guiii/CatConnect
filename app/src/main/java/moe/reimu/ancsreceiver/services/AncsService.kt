@@ -367,15 +367,18 @@ class AncsService : Service() {
                             )
                         }
 
-                        val negativeAction =
-                            attributes[AncsConstants.NotificationAttributeIDNegativeActionLabel]
-                        if (negativeAction != null) {
-                            builder.addAction(
-                                R.drawable.ic_close,
-                                negativeAction,
-                                getActionIntent(ACTION_NEGATIVE_ACTION, uid)
-                            )
-                            builder.setDeleteIntent(getActionIntent(ACTION_NEGATIVE_ACTION, uid))
+                        val clearOnOriginDevice = MyApplication.Companion.getInstance().getSettings().clearOnOriginDevice
+                        if (clearOnOriginDevice) {
+                            val negativeAction =
+                                attributes[AncsConstants.NotificationAttributeIDNegativeActionLabel]
+                            if (negativeAction != null) {
+                                builder.addAction(
+                                    R.drawable.ic_close,
+                                    negativeAction,
+                                    getActionIntent(ACTION_NEGATIVE_ACTION, uid)
+                                )
+                                builder.setDeleteIntent(getActionIntent(ACTION_NEGATIVE_ACTION, uid))
+                            }
                         }
 
                         val contentLines = mutableListOf<String>()

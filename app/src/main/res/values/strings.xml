@@ -23,4 +23,6 @@
     <string name="service_enabled">Enabled</string>
     <string name="server_service_name">Share notifications to paired devices</string>
     <string name="server_service_desc">Share notifications on this device to other compatible paired devices</string>
+    <string name="clear_on_origin_device_name">Clear notifications on the originating device</string>
+    <string name="clear_on_origin_device_desc">Clearing a notification on this device also clears it on the originating device.</string>
 </resources>
